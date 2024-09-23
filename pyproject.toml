@@ -1,0 +1,30 @@
+[project]
+name = "my-kick-preview-front"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "nijigen-plot" }
+]
+dependencies = [
+    "reflex>=0.5.10",
+    "boto3>=1.35.24",
+    "requests>=2.32.3",
+    "python-dotenv>=1.0.1",
+    "Pillow>=10.4.0",
+]
+readme = "README.md"
+requires-python = ">= 3.11"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/my_kick_preview_front"]
