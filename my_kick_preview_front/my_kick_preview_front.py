@@ -16,7 +16,7 @@ load_dotenv()
 
 aws_access_key = os.getenv('AWS_ACCESS_KEY')
 aws_secret_key = os.getenv('AWS_SECRET_KEY')
-access_url = os.getenv('ACCESS_URL')
+host_address = os.getenv('HOST_ADDRESS')
 
 class State(rx.State):
     """The app state."""
@@ -26,7 +26,7 @@ class State(rx.State):
     processing = False
     
     def get_contents_metadata(self):
-        url = f'{access_url}:5000/api/get-content'
+        url = f'{host_address}:5000/api/get-content'
         # ヘッダーの設定
         headers = {
             'Accept': 'application/json'
