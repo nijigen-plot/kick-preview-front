@@ -23,6 +23,7 @@ class State(rx.State):
     image = ""
     audio = ""
     title = ""
+    share_on_x = ""
     processing = False
     
     def get_contents_metadata(self):
@@ -61,7 +62,6 @@ class State(rx.State):
         response = s3.get_object(Bucket=bucket_name, Key=object_key)
         return response
 
-
     def get_contents(self):
         self.processing = True
         yield
@@ -75,62 +75,84 @@ class State(rx.State):
         self.audio = self.generate_presigned_url(audio_uri)
         self.title = title
         self.processing = False
+    
+
     ...
 
 
 def index() -> rx.Component:
+    image_style =   {
+                "justify-content": "center",    # 水平方向の中央揃え
+                "align-items": "center",        # 垂直方向の中央揃え
+                "height": "500px",              # 確保するスペースの高さ
+                "width": "500px",               # 確保するスペースの幅
+                "margin": "0 auto",             # 中央寄せ
+                "max-width": "100%",            # 溢れる場合縮小
+                "max-height": "100%",           # 溢れる場合縮小
+            }
+    
     # Welcome Page (Index)
     return rx.container(
         rx.vstack(
             rx.heading("Kick Preview", size="9"),
+            rx.button(
+                "Generate 🔊",
+                type="submit",
+                size="4",
+                color_scheme="yellow",
+                on_click=State.get_contents,
+                radius="full",
+                style={
+                    "margin": "0 auto" # ボタンアイコンを中央に寄せる
+                }
+            ),
             rx.skeleton(
-                rx.hstack(
+                rx.cond(
+                    State.image,
                     rx.flex(
-                        rx.cond(
-                            State.image,
-                            rx.image(
-                                src=State.image,
-                                style={"height" : "300px", "width":"300px"}
-                            ),
-                            rx.flex(
-                                rx.icon("image", size=26, color=rx.color("slate", 7)),
-                                justify="center",
-                                align="center",
-                                style={"height": "300px", "width":"300px"}  # 最小の高さを設定
-                            ),
-                        ),                    
-                    ),
-                    rx.vstack(
-                        rx.heading(
-                            State.title,
-                            size="3"
+                        rx.image(
+                            src=State.image,
                         ),
-                        rx.audio(
-                            url=State.audio,
-                            playing=True,
-                            loop=False,
-                            width="400px",
-                            height="32px"
-                        )
-                    )
+                        style=image_style
+                    ),
+                    rx.flex(
+                        rx.icon("image", size=26, color=rx.color("slate", 7), style={"margin":"0 auto"}),
+                        style=image_style
+                    ),
                 ),
                 loading=State.processing
             ),
-            rx.button(
-                "Generate",
-                type="submit",
-                on_click=State.get_contents
-            ),
-            spacing="5",
-            justify="center",
-            min_height="85vh",
+            rx.flex(
+                rx.vstack(
+                    rx.heading(
+                        State.title,
+                        size="7",
+                        align="center"
+                    ),
+                    rx.audio(
+                        url=State.audio,
+                        playing=True,
+                        loop=False,
+                        width="400px",
+                        height="32px",
+                    ),
+                    spacing="10px"
+                ),
+                style={
+                    "display": "flex",
+                    "flex-direction": "column",
+                    "justify-content": "center",
+                    "align-items": "center",
+                    "width": "100%",
+                    "text-align": "center" 
+                }
+            )
         ),
         rx.logo(),
         style={
-            "padding": "20px",  # 外側のパディングを追加
-            "margin": "0 auto",  # 中央寄せ
-            "maxWidth": "1200px"  # 最大幅を設定
-        }
+            "overflow-x": "hidden" # これ入れるとiphoneで見たときに右に変な余白無くなる
+        },
+        width="100%"
     )
 
 
