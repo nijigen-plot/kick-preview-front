@@ -1,9 +1,11 @@
+# env
 # python generated files
 # venv
 *.db
 *.egg-info
 *.py[cod]
 *.py[oc]
+.env
 .venv
 .web
 __pycache__/
@@ -11,6 +13,3 @@ assets/external/
 build/
 dist/
 wheels/
-
-# env
-.env

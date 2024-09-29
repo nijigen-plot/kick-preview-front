@@ -6,6 +6,8 @@
 #   features: []
 #   all-features: false
 #   with-sources: false
+#   generate-hashes: false
+#   universal: false
 
 -e file:.
 alembic==1.13.2
@@ -110,6 +112,8 @@ packaging==24.1
     # via reflex
 pillow==10.4.0
     # via my-kick-preview-front
+pip==24.2
+    # via pipdeptree
 pipdeptree==2.16.2
     # via reflex-hosting-cli
 pkginfo==1.10.0
@@ -174,6 +178,8 @@ s3transfer==0.10.2
     # via boto3
 secretstorage==3.3.3
     # via keyring
+setuptools==70.1.1
+    # via reflex
 shellingham==1.5.4
     # via typer
 simple-websocket==1.0.0
@@ -229,7 +235,3 @@ wsproto==1.2.0
     # via simple-websocket
 zipp==3.20.2
     # via importlib-metadata
-pip==24.2
-    # via pipdeptree
-setuptools==70.1.1
-    # via reflex
