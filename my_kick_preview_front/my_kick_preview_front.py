@@ -76,8 +76,20 @@ class State(rx.State):
         self.title = title
         self.processing = False
     
+    def twitter_share(self):
+        tweet_text = f"今日のキックはコレ🔊%0A{self.title}"
+        tweet_url = "http://quark-home.tplinkdns.com/"
+        hashtags = "kick_preview"
 
-    ...
+        # Twitter用の共有URLを作成
+        twitter_url = f"https://twitter.com/intent/tweet?text={tweet_text}&url={tweet_url}%0A%0A&hashtags={hashtags}"
+
+        # JavaScriptコードで別ウィンドウを開く
+        js_code = f"window.open('{twitter_url}', '_blank', 'width=600,height=400');"
+        
+        # call_scriptでJavaScriptを実行
+        return rx.call_script(js_code)
+        ...
 
 
 def index() -> rx.Component:
@@ -144,9 +156,32 @@ def index() -> rx.Component:
                     "justify-content": "center",
                     "align-items": "center",
                     "width": "100%",
-                    "text-align": "center" 
+                    "text-align": "center",
+                    "margin-bottom":"30px"
                 }
             )
+        ),
+        rx.flex(
+            rx.cond(
+                State.image,
+                rx.button(
+                    rx.icon("twitter", size=80),
+                    on_click=State.twitter_share,
+                    style={
+                        "width":"50px",
+                        "height":"50px"
+                    }
+                ),
+                rx.text()
+            ),
+            style={
+                "display": "flex",
+                "flex-direction": "column",
+                "justify-content": "center",
+                "align-items": "center",
+                "width": "100%",
+                "text-align": "center" 
+            }         
         ),
         rx.logo(),
         style={
