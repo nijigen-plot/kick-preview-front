@@ -106,30 +106,33 @@ def index() -> rx.Component:
     # Welcome Page (Index)
     return rx.container(
         rx.vstack(
-            rx.heading("Kick Preview", size="9"),
-            rx.button(
-                "Generate 🔊",
-                type="submit",
-                size="4",
-                color_scheme="yellow",
-                on_click=State.get_contents,
-                radius="full",
-                style={
-                    "margin": "0 auto" # ボタンアイコンを中央に寄せる
-                }
-            ),
+            rx.heading("Kick Preview", size="9", style={"margin": "0 auto"}),
             rx.skeleton(
                 rx.cond(
                     State.image,
                     rx.flex(
-                        rx.image(
-                            src=State.image,
+                        rx.button(
+                            rx.image(
+                                src=State.image,
+                            ),
+                            type="submit",
+                            on_click=State.get_contents,
+                            color_scheme="yellow",
+                            style=image_style
                         ),
                         style=image_style
                     ),
                     rx.flex(
-                        rx.icon("image", size=26, color=rx.color("slate", 7), style={"margin":"0 auto"}),
-                        style=image_style
+                        rx.button(
+                            rx.heading("PUSH IT! 🔊", size="9"),
+                            variant="classic",
+                            type="submit",
+                            color_scheme="yellow",
+                            on_click=State.get_contents,
+                            radius="full",
+                            style=image_style # めっちゃでかくなる
+                        ),
+                        style=image_style # 真ん中に配置される
                     ),
                 ),
                 loading=State.processing
