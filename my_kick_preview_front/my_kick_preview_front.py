@@ -23,7 +23,7 @@ class State(rx.State):
     image = ""
     audio = ""
     title = ""
-    share_on_x = ""
+    twitter_url = ""
     processing = False
     
     def get_contents_metadata(self):
@@ -75,22 +75,7 @@ class State(rx.State):
         self.audio = self.generate_presigned_url(audio_uri)
         self.title = title
         self.processing = False
-    
-    def twitter_share(self):
-        tweet_text = f"今日のキックはコレ🔊%0A{self.title}"
-        tweet_url = "http://quark-home.tplinkdns.com/"
-        hashtags = "kick_preview"
-
-        # Twitter用の共有URLを作成
-        twitter_url = f"https://twitter.com/intent/tweet?text={tweet_text}&url={tweet_url}%0A%0A&hashtags={hashtags}"
-
-        # JavaScriptコードで別ウィンドウを開く
-        js_code = f"window.open('{twitter_url}', '_blank', 'width=600,height=400');"
-        
-        # call_scriptでJavaScriptを実行
-        return rx.call_script(js_code)
-        ...
-
+        self.twitter_url = f"https://twitter.com/intent/tweet?text=今日のキックはコレ🔊%0A{self.title}%0A&url=home.quark-hardcore.com/kick-preview/%0A%0A&hashtags=kick_preview"
 
 def index() -> rx.Component:
     image_style =   {
@@ -167,13 +152,16 @@ def index() -> rx.Component:
         rx.flex(
             rx.cond(
                 State.image,
-                rx.button(
-                    rx.icon("twitter", size=80),
-                    on_click=State.twitter_share,
-                    style={
-                        "width":"50px",
-                        "height":"50px"
-                    }
+                rx.link(
+                    rx.button(
+                        rx.icon("twitter", size=80),
+                        style={
+                            "width":"50px",
+                            "height":"50px"
+                        }
+                    ),
+                    href=State.twitter_url,
+                    is_external=True,
                 ),
                 rx.text()
             ),
