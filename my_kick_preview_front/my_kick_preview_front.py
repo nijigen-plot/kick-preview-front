@@ -111,19 +111,37 @@ def index() -> rx.Component:
                             type="submit",
                             on_click=State.get_contents,
                             color_scheme="yellow",
-                            style=image_style
+                            style={
+                                "background-color": "transparent", # 元のボタンは透明化
+                                "justify-content": "center",    
+                                "align-items": "center",        
+                                "height": "500px",              
+                                "width": "500px",               
+                                "margin": "0 auto",             
+                                "max-width": "100%",            
+                                "max-height": "100%",           
+                            }
                         ),
                         style=image_style
                     ),
                     rx.flex(
                         rx.button(
-                            rx.heading("PUSH IT! 🔊", size="9"),
-                            variant="classic",
+                            rx.image(
+                                src="images/yellow_button.png"
+                            ),
                             type="submit",
-                            color_scheme="yellow",
                             on_click=State.get_contents,
-                            radius="full",
-                            style=image_style # めっちゃでかくなる
+                            color_scheme="yellow",
+                            style={
+                                "background-color": "transparent", # 元のボタンは透明化
+                                "justify-content": "center",    
+                                "align-items": "center",        
+                                "height": "500px",              
+                                "width": "500px",               
+                                "margin": "0 auto",             
+                                "max-width": "110%",            
+                                "max-height": "100%",           
+                            }
                         ),
                         style=image_style # 真ん中に配置される
                     ),
