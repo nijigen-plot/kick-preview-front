@@ -162,6 +162,7 @@ def index() -> rx.Component:
                         url=State.audio,
                         playing=True,
                         loop=False,
+                        controls=False,
                         width="400px",
                         height="32px",
                     ),
