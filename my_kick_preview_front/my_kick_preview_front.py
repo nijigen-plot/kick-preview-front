@@ -153,7 +153,10 @@ def index() -> rx.Component:
                     rx.heading(
                         State.title,
                         size="7",
-                        align="center"
+                        align="center",
+                        style={
+                            "max-width": "100%"
+                        }
                     ),
                     rx.audio(
                         url=State.audio,
