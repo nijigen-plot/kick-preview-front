@@ -3,6 +3,7 @@
 import os
 import io
 import base64
+import urllib.parse
 
 from PIL import Image
 import reflex as rx
@@ -69,13 +70,20 @@ class State(rx.State):
         title = contents_metadata['title']
         image_uri = contents_metadata['image_uri']
         audio_uri = contents_metadata['audio_uri']
+        link = contents_metadata['link']
         
         image_data = self.get_data(image_uri)['Body'].read()
         self.image = Image.open(io.BytesIO(image_data))
         self.audio = self.generate_presigned_url(audio_uri)
         self.title = title
         self.processing = False
-        self.twitter_url = f"https://twitter.com/intent/tweet?text=今日のキックはコレ🔊%0A{self.title}%0A&url=home.quark-hardcore.com/kick-preview/%0A%0A&hashtags=kick_preview"
+        self.twitter_url = (
+                f"https://twitter.com/intent/tweet?"
+                f"text=今日のキックはコレ🔊%0A"
+                f"{urllib.parse.quote(self.title)}"
+                f"&url={urllib.parse.quote(link)}"
+                f"&hashtags=kick_preview"
+            )
 
 def index() -> rx.Component:
     image_style =   {
