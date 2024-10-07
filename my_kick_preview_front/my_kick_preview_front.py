@@ -131,10 +131,25 @@ def index() -> rx.Component:
                                 "width": "500px",               
                                 "margin": "0 auto",             
                                 "max-width": "100%",            
-                                "max-height": "100%",           
+                                "max-height": "100%",
+                                "transition": "all 0.1s ease",
+                            },
+                            _active={  # ボタンが押されたときのスタイル
+                                "transform": "scale(0.95)",  # 少し縮小する
+                                "position": "relative",  # ボタンがずれないようにする
+                                "top": "2px",  # 押された感を出すため少し下にずれる
                             }
                         ),
-                        style=image_style
+                        style={
+                            "flexDirection": "column",      # 縦積み
+                            "justify-content": "center",    # 水平方向の中央揃え
+                            "align-items": "center",        # 垂直方向の中央揃え
+                            "height": "340px",              # 確保するスペースの高さ
+                            "width": "500px",               # 確保するスペースの幅
+                            "margin": "0 auto",             # 中央寄せ
+                            "max-width": "100%",            # 溢れる場合縮小
+                            "max-height": "100%",           # 溢れる場合縮小
+                        }
                     ),
                     rx.flex(
                         rx.button(
@@ -152,10 +167,24 @@ def index() -> rx.Component:
                                 "width": "500px",               
                                 "margin": "0 auto",             
                                 "max-width": "110%",            
-                                "max-height": "100%",           
+                                "max-height": "100%",
+                                "transition": "all 0.1s ease",
+                            },
+                            _active={  # ボタンが押されたときのスタイル
+                                "transform": "scale(0.95)",  # 少し縮小する
+                                "position": "relative",  # ボタンがずれないようにする
+                                "top": "2px",  # 押された感を出すため少し下にずれる
                             }
                         ),
-                        style=image_style # 真ん中に配置される
+                        style={
+                            "justify-content": "center",    # 水平方向の中央揃え
+                            "align-items": "center",        # 垂直方向の中央揃え
+                            "height": "330px",              # 確保するスペースの高さ
+                            "width": "500px",               # 確保するスペースの幅
+                            "margin": "0 auto",             # 中央寄せ
+                            "max-width": "100%",            # 溢れる場合縮小
+                            "max-height": "100%",           # 溢れる場合縮小
+                        }
                     ),
                 ),
                 loading=State.processing
