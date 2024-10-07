@@ -127,7 +127,7 @@ def index() -> rx.Component:
                                 "background-color": "transparent", # 元のボタンは透明化
                                 "justify-content": "center",    
                                 "align-items": "center",        
-                                "height": "500px",              
+                                "height": "330px",              
                                 "width": "500px",               
                                 "margin": "0 auto",             
                                 "max-width": "100%",            
@@ -196,7 +196,9 @@ def index() -> rx.Component:
                         size="7",
                         align="center",
                         style={
-                            "max-width": "100%"
+                            "max-width": "100%",
+                            "text-align":"center",
+                            "margin": "0 auto"
                         }
                     ),
                     rx.audio(
@@ -204,10 +206,8 @@ def index() -> rx.Component:
                         playing=True,
                         loop=False,
                         controls=False,
-                        width="400px",
-                        height="32px",
-                    ),
-                    spacing="10px"
+                        width="100px"
+                    )
                 ),
                 style={
                     "display": "flex",
@@ -215,8 +215,7 @@ def index() -> rx.Component:
                     "justify-content": "center",
                     "align-items": "center",
                     "width": "100%",
-                    "text-align": "center",
-                    "margin-bottom":"30px"
+                    "text-align": "center"
                 }
             )
         ),
