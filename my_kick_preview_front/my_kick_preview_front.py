@@ -4,6 +4,7 @@ import os
 import io
 import base64
 import urllib.parse
+import random
 
 from PIL import Image
 import reflex as rx
@@ -25,6 +26,7 @@ class State(rx.State):
     audio = ""
     title = ""
     twitter_url = ""
+    push_text = ""
     processing = False
     
     def get_contents_metadata(self):
@@ -84,18 +86,18 @@ class State(rx.State):
                 f"&url={urllib.parse.quote(link)}"
                 f"&hashtags=kick_preview"
             )
+        texts = [
+            "Keep it up!",
+            "Push it!",
+            "Keep pressing!",
+            "Just one more!",
+            "You’re on fire!",
+            "Don’t stop now!",
+            "Keep going!"
+        ]
+        self.push_text = random.choice(texts)
 
 def index() -> rx.Component:
-    image_style =   {
-                "justify-content": "center",    # 水平方向の中央揃え
-                "align-items": "center",        # 垂直方向の中央揃え
-                "height": "500px",              # 確保するスペースの高さ
-                "width": "500px",               # 確保するスペースの幅
-                "margin": "0 auto",             # 中央寄せ
-                "max-width": "100%",            # 溢れる場合縮小
-                "max-height": "100%",           # 溢れる場合縮小
-            }
-    
     # Welcome Page (Index)
     return rx.container(
         rx.vstack(
@@ -104,6 +106,9 @@ def index() -> rx.Component:
                 rx.cond(
                     State.image,
                     rx.flex(
+                        rx.text(
+                                State.push_text
+                            ),
                         rx.button(
                             rx.image(
                                 src=State.image,
