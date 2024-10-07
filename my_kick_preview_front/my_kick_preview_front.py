@@ -101,7 +101,14 @@ def index() -> rx.Component:
     # Welcome Page (Index)
     return rx.container(
         rx.vstack(
-            rx.heading("Kick Preview", size="9", style={"margin": "0 auto"}),
+            rx.image(
+                src="images/kp1.png",
+                style={
+                    "mix-blend-mode": "difference",
+                    "max=height": "100%"
+                }
+            ),
+            rx.box(height="10px"),
             rx.skeleton(
                 rx.cond(
                     State.image,
