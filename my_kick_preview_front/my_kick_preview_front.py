@@ -125,14 +125,14 @@ def index() -> rx.Component:
                             on_click=State.get_contents,
                             color_scheme="yellow",
                             style={
-                                "background-color": "transparent", # 元のボタンは透明化
-                                "justify-content": "center",    
-                                "align-items": "center",        
-                                "height": "330px",              
-                                "width": "500px",               
-                                "margin": "0 auto",             
-                                "max-width": "100%",            
-                                "max-height": "100%",
+                                "background-color": "transparent",
+                                "justify-content": "center",
+                                "align-items": "center",
+                                "width": "90vw",
+                                "max-width": "500px",
+                                "height": "calc(90vw * 1)",
+                                "max-height": "500px",
+                                "margin": "0 auto",
                                 "transition": "all 0.1s ease",
                             },
                             _active={  # ボタンが押されたときのスタイル
@@ -142,14 +142,14 @@ def index() -> rx.Component:
                             }
                         ),
                         style={
-                            "flexDirection": "column",      # 縦積み
-                            "justify-content": "center",    # 水平方向の中央揃え
-                            "align-items": "center",        # 垂直方向の中央揃え
-                            "height": "340px",              # 確保するスペースの高さ
-                            "width": "500px",               # 確保するスペースの幅
-                            "margin": "0 auto",             # 中央寄せ
-                            "max-width": "100%",            # 溢れる場合縮小
-                            "max-height": "100%",           # 溢れる場合縮小
+                            "flexDirection": "column",
+                            "justify-content": "center",
+                            "align-items": "center",
+                            "width": "90vw",
+                            "max-width": "500px",
+                            "height": "calc(90vw * 1)",
+                            "max-height": "500px",
+                            "margin": "0 auto",
                         }
                     ),
                     rx.flex(
@@ -161,14 +161,14 @@ def index() -> rx.Component:
                             on_click=State.get_contents,
                             color_scheme="yellow",
                             style={
-                                "background-color": "transparent", # 元のボタンは透明化
-                                "justify-content": "center",    
-                                "align-items": "center",        
-                                "height": "500px",              
-                                "width": "500px",               
-                                "margin": "0 auto",             
-                                "max-width": "110%",            
-                                "max-height": "100%",
+                                "background-color": "transparent",
+                                "justify-content": "center",
+                                "align-items": "center",
+                                "width": "90vw",
+                                "max-width": "500px",
+                                "height": "calc(90vw * 1)",
+                                "max-height": "500px",
+                                "margin": "0 auto",
                                 "transition": "all 0.1s ease",
                             },
                             _active={  # ボタンが押されたときのスタイル
@@ -178,13 +178,14 @@ def index() -> rx.Component:
                             }
                         ),
                         style={
-                            "justify-content": "center",    # 水平方向の中央揃え
-                            "align-items": "center",        # 垂直方向の中央揃え
-                            "height": "330px",              # 確保するスペースの高さ
-                            "width": "500px",               # 確保するスペースの幅
-                            "margin": "0 auto",             # 中央寄せ
-                            "max-width": "100%",            # 溢れる場合縮小
-                            "max-height": "100%",           # 溢れる場合縮小
+                            "flexDirection": "column",
+                            "justify-content": "center",
+                            "align-items": "center",
+                            "width": "90vw",
+                            "max-width": "500px",
+                            "height": "calc(90vw * 1)",
+                            "max-height": "500px",
+                            "margin": "0 auto",
                         }
                     ),
                 ),
@@ -255,7 +256,6 @@ def index() -> rx.Component:
         },
         width="100%"
     )
-
 
 app = rx.App()
 app.add_page(index)
