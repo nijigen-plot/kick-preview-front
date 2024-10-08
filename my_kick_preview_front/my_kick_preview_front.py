@@ -105,7 +105,7 @@ def index() -> rx.Component:
                 src="images/kp1.png",
                 style={
                     "mix-blend-mode": "difference",
-                    "max=height": "100%"
+                    "max-height": "100%"
                 }
             ),
         rx.box(style={"height": "4vh",}),
