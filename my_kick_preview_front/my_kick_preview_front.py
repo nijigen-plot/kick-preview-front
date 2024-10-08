@@ -108,7 +108,7 @@ def index() -> rx.Component:
                     "max=height": "100%"
                 }
             ),
-            rx.box(height="10px"),
+        rx.box(style={"height": "4vh",}),
             rx.skeleton(
                 rx.cond(
                     State.image,
@@ -220,6 +220,7 @@ def index() -> rx.Component:
             )
         ),
         rx.flex(
+            rx.box(style={"height": "4vh",}),
             rx.cond(
                 State.image,
                 rx.link(
