@@ -114,7 +114,8 @@ def index() -> rx.Component:
                     State.image,
                     rx.flex(
                         rx.text(
-                                State.push_text
+                                State.push_text,
+                                color_scheme="yellow"
                             ),
                         rx.button(
                             rx.image(
