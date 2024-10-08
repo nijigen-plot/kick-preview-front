@@ -206,7 +206,10 @@ def index() -> rx.Component:
                         playing=True,
                         loop=False,
                         controls=False,
-                        width="100px"
+                        width="100px",
+                        style={
+                            "display": "none"
+                        }
                     )
                 ),
                 style={
