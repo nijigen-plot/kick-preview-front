@@ -100,6 +100,11 @@ class State(rx.State):
 def index() -> rx.Component:
     # Welcome Page (Index)
     return rx.container(
+        rx.html("""
+            <head>
+                <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+            </head>
+            """),
         rx.vstack(
             rx.image(
                 src="images/kp1.png",
