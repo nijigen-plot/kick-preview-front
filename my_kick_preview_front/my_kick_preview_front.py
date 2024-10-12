@@ -82,8 +82,8 @@ class State(rx.State):
         self.twitter_url = (
                 f"https://twitter.com/intent/tweet?"
                 f"text=今日のキックはコレ🔊%0A"
-                f"{urllib.parse.quote(self.title)}"
-                f"&url={urllib.parse.quote(link)}"
+                f"{urllib.parse.quote(self.title)}%0D%0A%0D%0A"
+                f"&url={urllib.parse.quote(link)}%0A"
                 f"&hashtags=kick_preview"
             )
         texts = [
