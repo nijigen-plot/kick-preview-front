@@ -17,3 +17,6 @@ wheels/
 
 # nohup
 *.out
+
+# watermark
+BACKGROUND_LOGO.jpg
