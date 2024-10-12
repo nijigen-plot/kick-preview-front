@@ -104,6 +104,19 @@ def index() -> rx.Component:
             <head>
                 <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
             </head>
+            <div style="
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('/images/BACKGROUND_LOGO.jpg');
+                background-repeat: repeat; /* 繰り返し表示 */
+                background-position: center; /* 中央寄せ */
+                background-size: contain;  /* 画像全体を維持 */
+                opacity: 0.2;
+                z-index: -1;">
+            </div>
             """),
         rx.vstack(
             rx.image(
