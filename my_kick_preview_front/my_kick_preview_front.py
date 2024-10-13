@@ -27,6 +27,7 @@ class State(rx.State):
     title = ""
     twitter_url = ""
     push_text = ""
+    track_link = ""
     processing = False
     
     def get_contents_metadata(self):
@@ -79,6 +80,7 @@ class State(rx.State):
         self.audio = self.generate_presigned_url(audio_uri)
         self.title = title
         self.processing = False
+        self.track_link = link
         self.twitter_url = (
                 f"https://twitter.com/intent/tweet?"
                 f"text=今日のキックはコレ🔊%0A"
@@ -246,16 +248,30 @@ def index() -> rx.Component:
             rx.box(style={"height": "4vh",}),
             rx.cond(
                 State.image,
-                rx.link(
-                    rx.button(
-                        rx.icon("twitter", size=80),
-                        style={
-                            "width":"50px",
-                            "height":"50px"
-                        }
+                rx.hstack(
+                    rx.link(
+                        rx.button(
+                            rx.icon("twitter", size=80),
+                            style={
+                                "width":"50px",
+                                "height":"50px"
+                            }
+                        ),
+                        href=State.twitter_url,
+                        is_external=True,
                     ),
-                    href=State.twitter_url,
-                    is_external=True,
+                    rx.link(
+                        rx.button(
+                            rx.icon("music", size=80),
+                            color_scheme="gray",
+                            style={
+                                "width":"50px",
+                                "height":"50px"
+                                }
+                        ),
+                        href=State.track_link,
+                        is_external=True
+                    ),
                 ),
                 rx.text()
             ),
