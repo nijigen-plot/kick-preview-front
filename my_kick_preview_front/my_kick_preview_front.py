@@ -20,6 +20,14 @@ aws_access_key = os.getenv('AWS_ACCESS_KEY')
 aws_secret_key = os.getenv('AWS_SECRET_KEY')
 host_address = os.getenv('HOST_ADDRESS')
 
+meta = [
+    {"property": "og:title", "content": "Kick Preview"},
+    {"property": "og:description", "content": "One tap, one second of music."},
+    {"property": "og:image", "content": "images/kp1.png"},
+    {"property": "og:url", "content": "https://home.quark-hardcore.com/kick-preview/"},
+]
+
+
 class State(rx.State):
     """The app state."""
     image = ""
@@ -99,6 +107,12 @@ class State(rx.State):
         ]
         self.push_text = random.choice(texts)
 
+@rx.page(
+    title="Kick Preview",
+    description="One tap, one second of music.",
+    image="images/kp1.png",
+    meta=meta,
+)
 def index() -> rx.Component:
     # Welcome Page (Index)
     return rx.container(
