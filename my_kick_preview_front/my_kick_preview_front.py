@@ -24,7 +24,7 @@ meta = [
     {"property": "og:title", "content": "Kick Preview"},
     {"property": "og:description", "content": "One tap, one second of music."},
     {"property": "og:image", "content": "images/kp1.png"},
-    {"property": "og:url", "content": "https://home.quark-hardcore.com/kick-preview/"},
+    {"property": "og:url", "content": "https://home.quark-hardcore.com/images/kp1.png"}
 ]
 
 
@@ -110,7 +110,7 @@ class State(rx.State):
 @rx.page(
     title="Kick Preview",
     description="One tap, one second of music.",
-    image="images/kp1.png",
+    image="https://home.quark-hardcore.com/images/kp1.png",
     meta=meta,
 )
 def index() -> rx.Component:
