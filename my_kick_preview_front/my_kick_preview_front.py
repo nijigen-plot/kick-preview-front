@@ -23,8 +23,8 @@ host_address = os.getenv('HOST_ADDRESS')
 meta = [
     {"property": "og:title", "content": "Kick Preview"},
     {"property": "og:description", "content": "One tap, one second of music."},
-    {"property": "og:image", "content": "images/kp1.png"},
-    {"property": "og:url", "content": "https://home.quark-hardcore.com/images/kp1.png"}
+    {"property": "og:image", "content": "https://home.quark-hardcore.com/images/kp1.png"},
+    {"property": "og:url", "content": "https://home.quark-hardcore.com/kick-preview/"}
 ]
 
 
