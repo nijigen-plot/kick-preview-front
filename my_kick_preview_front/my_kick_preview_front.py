@@ -23,8 +23,8 @@ host_address = os.getenv('HOST_ADDRESS')
 meta = [
     {"property": "og:title", "content": "Kick Preview"},
     {"property": "og:description", "content": "One tap, one second of music."},
-    {"property": "og:image", "content": "images/kp1.png"},
-    {"property": "og:url", "content": "https://home.quark-hardcore.com/images/kp1.png"}
+    {"property": "og:image", "content": "https://home.quark-hardcore.com/images/kp1.png"},
+    {"property": "og:url", "content": "https://home.quark-hardcore.com/kick-preview/"}
 ]
 
 
@@ -118,6 +118,15 @@ def index() -> rx.Component:
     return rx.container(
         rx.html("""
             <head>
+				<!-- Google tag (gtag.js) -->
+				<script async src="https://www.googletagmanager.com/gtag/js?id=G-WH6S6PRFNC"></script>
+				<script>
+				  window.dataLayer = window.dataLayer || [];
+				  function gtag(){dataLayer.push(arguments);}
+				  gtag('js', new Date());
+
+				  gtag('config', 'G-WH6S6PRFNC');
+				</script>
                 <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
             </head>
             <div style="
