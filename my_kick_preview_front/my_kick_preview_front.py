@@ -1,18 +1,18 @@
 """Welcome to Reflex! This file outlines the steps to create a basic app."""
 
-import os
-import io
 import base64
-import urllib.parse
+import io
+import os
 import random
+import urllib.parse
 
-from PIL import Image
-import reflex as rx
-from rxconfig import config
 import boto3
-from dotenv import load_dotenv
+import reflex as rx
 import requests
+from dotenv import load_dotenv
+from PIL import Image
 
+from rxconfig import config
 
 load_dotenv()
 
@@ -37,7 +37,7 @@ class State(rx.State):
     push_text = ""
     track_link = ""
     processing = False
-    
+
     def get_contents_metadata(self):
         url = f'{host_address}:5000/api/get-content'
         # ヘッダーの設定
@@ -53,7 +53,7 @@ class State(rx.State):
             return response.json()
         else:
             response.raise_for_status()
-    
+
     def generate_presigned_url(self, uri):
         s3 = boto3.client('s3', aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key, region_name='ap-northeast-1')
         s3_parts = uri.replace("s3://", "").split("/",1)
@@ -65,7 +65,7 @@ class State(rx.State):
             ExpiresIn=600
         )
         return response
-    
+
     def get_data(self, uri):
         s3 = boto3.client('s3', aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key, region_name='ap-northeast-1')
         s3_parts = uri.replace("s3://", "").split("/",1)
@@ -82,7 +82,7 @@ class State(rx.State):
         image_uri = contents_metadata['image_uri']
         audio_uri = contents_metadata['audio_uri']
         link = contents_metadata['link']
-        
+
         image_data = self.get_data(image_uri)['Body'].read()
         self.image = Image.open(io.BytesIO(image_data))
         self.audio = self.generate_presigned_url(audio_uri)
@@ -304,8 +304,12 @@ def index() -> rx.Component:
                 "justify-content": "center",
                 "align-items": "center",
                 "width": "100%",
-                "text-align": "center" 
-            }         
+                "text-align": "center"
+            }
+        ),
+        rx.markdown(
+            "Contents provided by [Prototypes Records](https://www.prototypesrecords.com/)"
+            , style={"text-align":"center"}
         ),
         rx.logo(),
         style={
